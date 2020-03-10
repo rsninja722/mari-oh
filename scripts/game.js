@@ -390,7 +390,7 @@ function text(txt,x,y,color="black",size=1,maxWidth=cw) {
     }
 
     for(let i=0;i<txtList.length;i++) {
-        curCtx.fillText(txtList[i],x+camera.x+difx,y+camera.y+dify+((i+(drawMode?1:0))*8*size+(size*i)));
+        curCtx.fillText(txtList[i],x+camera.x+difx,y+camera.y+dify+((i+(drawMode?1:0))*8*size+(size*4*i)));
     }
 }
 
