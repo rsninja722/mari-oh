@@ -10,7 +10,11 @@ audio = [
     "assets/audio/",
     "Coin.wav",
     "Die.wav",
-    "Jump.wav"
+    "Jump.wav",
+    "Pause.wav",
+    "Squish.wav",
+    "Bump.wav",
+    "overworld.mp3"
 ];
 
 var qBlink = 0;
@@ -37,20 +41,24 @@ function update() {
         case "intro":
             if (!newState && mousePress[0]) { 
                 slideState++;
+                play(sounds.Pause);
+                if(slideState === 2) {
+                    play(sounds.overworld);
+                }
                 if(slideState === 2 || slideState === 5 || slideState === 6) { state = "playing"; } 
             }
             if (slideState === 0) {
-                displayText = "Rene Descartes was a french philosipher from the 17th century. In his Meditations, he explored how we aquire knowlage, and know what is real.";
+                displayText = "Rene Descartes was a french philosipher from the 17th century. In his Meditations, he explored how we aquire knowledge, and know what is real.";
             } else if (slideState === 1) {
-                displayText = "Descartes abandonded all previous knowladge to arrive at his conclusions. To win this game you must do the same.";
+                displayText = "Descartes abandonded all previous knowledge to arrive at his conclusions. To win this game you must do the same.";
             } else if (slideState === 2) {
-                displayText = "You may think you know the truth about this world, because of your previous knowladge of mario.";
+                displayText = "You may think you know the truth about this world, because of your previous knowledge of mario.";
             } else if (slideState === 3) {
                 displayText = "Abandon all assumptions, you cannot know the nature of this world by just sensing the substances of it.";
             } else if (slideState === 4) {
                 displayText = "How do you know the goomba will kill you? Is the reality presented on your screen the truth?";
             } else if (slideState === 5) {
-                displayText = "One thing is for sure, Mario jumps therefore he is";
+                displayText = "You must gain knowledge of this world in your mind, through reason. Have fun.";
             } else if (slideState === 6) {
                 displayText = "Thanks for playing!";
             }
@@ -82,8 +90,10 @@ function update() {
             break;
         case "dying":
             if (newState) {
+                stop(sounds.overworld);
                 timer = Date.now();
                 mario.vel.y = -0.2;
+                play(sounds.Die);
             }
             if(Date.now() - timer > 500) {
                 mario.vel.y += 0.01;
@@ -97,13 +107,14 @@ function update() {
             if (newState) {
                 timer = Date.now();
             }
-            if(Date.now() - timer > 2000) {
+            if(Date.now() - timer > 2500) {
                 state = "playing";
                 mario = new Mario();
                 cameraX = cw/2;
                 coins = 0;
                 level = [];
                 goombas = [];
+                play(sounds.overworld);
                 loadLevels();
             }
             break;
@@ -219,6 +230,8 @@ function onAssetsLoaded() {
     loadTiles();
     loadEnemies();
     loadLevels();
+    setVolume(sounds.overworld,0.5);
+    setType(sounds.overworld,"bgm");
     cameraX = cw / 2;
 }
 

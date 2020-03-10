@@ -67,9 +67,11 @@ Mario.prototype.update = function() {
     if (keyPress[k.UP] || keyPress[k.w] || keyPress[k.SPACE]) {
         if (this.swimming) {
             this.vel.y = -0.1;
+            play(sounds.Squish);
         } else if (this.grounded) {
             this.vel.y = this.jump - Math.abs(this.vel.x) / 3;
             this.grounded = false;
+            play(sounds.Jump);
         }
     }
 
@@ -116,6 +118,7 @@ Mario.prototype.update = function() {
             if (xCol.type === "brick") {
                 level[xCol.y][xCol.x] = "air";
                 collides = getCollisions(this.x, this.y);
+                play(sounds.Coin);
                 coins++;
             } else {
                 if (this.x < xCol.x) {
@@ -134,12 +137,16 @@ Mario.prototype.update = function() {
     if (yCol !== false) {
         if (yCol.type === "brick") {
             level[yCol.y][yCol.x] = "air";
+            play(sounds.Coin);
             coins++;
         } else {
             if (this.vel.y > 0) {
                 this.y = yCol.y - (yCol.h / 2) - (this.h / 2) - 0.001;
             } else {
                 this.y = yCol.y + (yCol.h / 2) + (this.h / 2) + 0.001;
+                if(yCol.type === "question") {
+                    play(sounds.Bump);
+                }
             }
             this.vel.y = 0;
             this.grounded = true;
