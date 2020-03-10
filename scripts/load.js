@@ -36,21 +36,21 @@ function loadLevels() {
     for (var y = 0, yl = data.height; y < yl; y++) {
         level.push([]);
         for (var x = 0, xl = data.width; x < xl; x++) {
-            level[y][x] = loadTile([d[i], d[i + 1], d[i + 2]],x,y);
+            level[y][x] = loadTile([d[i], d[i + 1], d[i + 2]], x, y);
             i += 4;
         }
     }
 }
 
-function loadTile(array,x,y) {
+function loadTile(array, x, y) {
     var keys = Object.keys(definitions);
     for (var j = 0; j < keys.length; j++) {
         var d = definitions[keys[j]];
         if (d[0] == array[0] &&
             d[1] == array[1] &&
             d[2] == array[2]) {
-            if(keys[j] === "goomba") {
-                goombas.push(new Goomba(x,y));
+            if (keys[j] === "goomba") {
+                goombas.push(new Goomba(x, y));
             } else {
                 return keys[j];
             }
@@ -91,12 +91,12 @@ function loadTiles() {
     var ctx = canv.getContext("2d");
 
     for (var i = 0; i < tiles.length; i++) {
-        ctx.clearRect(0,0,16,16);
-        ctx.drawImage(tileImg,tiles[i][1],tiles[i][2],16,16,0,0,16,16);
+        ctx.clearRect(0, 0, 16, 16);
+        ctx.drawImage(tileImg, tiles[i][1], tiles[i][2], 16, 16, 0, 0, 16, 16);
         var src = canv.toDataURL("image/png");
         var tempImg = new Image();
         tempImg.src = src;
-        sprites[tiles[i][0]] = {spr:tempImg,drawLimitSize:16};
+        sprites[tiles[i][0]] = { spr: tempImg, drawLimitSize: 16 };
     }
 }
 
@@ -117,12 +117,12 @@ function loadEnemies() {
     var ctx = canv.getContext("2d");
 
     for (var i = 0; i < enemies.length; i++) {
-        ctx.clearRect(0,0,16,16);
-        ctx.drawImage(tileImg,enemies[i][1],enemies[i][2],16,16,0,0,16,16);
+        ctx.clearRect(0, 0, 16, 16);
+        ctx.drawImage(tileImg, enemies[i][1], enemies[i][2], 16, 16, 0, 0, 16, 16);
         var src = canv.toDataURL("image/png");
         var tempImg = new Image();
         tempImg.src = src;
-        sprites[enemies[i][0]] = {spr:tempImg,drawLimitSize:16};
+        sprites[enemies[i][0]] = { spr: tempImg, drawLimitSize: 16 };
     }
 }
 
@@ -150,11 +150,11 @@ function loadMario() {
 
     var ctx = canv.getContext("2d");
     for (var i = 0; i < marios.length; i++) {
-        ctx.clearRect(0,0,15,15);
-        ctx.drawImage(tileImg,marios[i][1],marios[i][2],15,15,0,0,15,15);
+        ctx.clearRect(0, 0, 15, 15);
+        ctx.drawImage(tileImg, marios[i][1], marios[i][2], 15, 15, 0, 0, 15, 15);
         var src = canv.toDataURL("image/png");
         var tempImg = new Image();
         tempImg.src = src;
-        sprites[marios[i][0]] = {spr:tempImg,drawLimitSize:15};
+        sprites[marios[i][0]] = { spr: tempImg, drawLimitSize: 15 };
     }
 }

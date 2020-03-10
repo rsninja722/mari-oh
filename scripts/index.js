@@ -76,6 +76,9 @@ function update() {
             }
             centerCameraOn(cameraX, ch / 2);
             updateGoombas();
+            if(mario.y > 20) {
+                state = "dying";
+            }
             break;
         case "dying":
             if (newState) {

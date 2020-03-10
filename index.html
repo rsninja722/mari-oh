@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>mari oh</title>
-        <meta charset="utf-8" />
-        <meta name="description" content="grade 11 philosophy project"/>
-        <style>
-            html {
-                background-color: #212121;
-                color: rgb(140, 255, 255);
-            }
-            canvas {
-                position:absolute;
-                top:0;bottom:0;right:0;left:0;
-                margin:auto;
-            }
-        </style>
-    </head>
-    <body>
-        <canvas id="game" width="512" height="480"></canvas>
-        <script src="scripts/game.js"></script>
-        <script src="scripts/load.js"></script>
-        <script src="scripts/goomba.js"></script>
-        <script src="scripts/mario.js"></script>
-        <script src="scripts/index.js"></script>
-    </body>
+
+<head>
+    <title>mari oh</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="grade 11 philosophy project" />
+    <link rel="icon" type="image/gif" href="assets/images/icon.png" />
+    <style>
+        html {
+            background-color: #212121;
+            color: rgb(140, 255, 255);
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="game" width="512" height="480"></canvas>
+    <p style="font-size: 14px;position: absolute; left: 10px; bottom: 10px;margin: none;font-family: monospace;">
+        Controls:<br>move - left/right arrows<br>jump - space bar<br>run - hold x
+    </p>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/load.js"></script>
+    <script src="scripts/goomba.js"></script>
+    <script src="scripts/mario.js"></script>
+    <script src="scripts/index.js"></script>
+</body>
+
 </html>
